@@ -8,7 +8,7 @@ During this workshop we will be implementing the following Machine Learning algo
 
 And train, validate and test these models harnessing a Quantum Computer.
 
-## Quantum Comuting and Machine Learning Theory and Concepts
+## Quantum Computing and Machine Learning Theory and Concepts
 
 In order to understand the implementations of these algorithms it is recommended (but not mandatory) to know a little bit of each of these and the basics of Quantum Computing to understand what is happening behind the scenes. If you don't know these concepts as of yet do not worry, you can totally carry out the workshop without them, but I do suggest to do some further reading to understand what has been implemented. I will try to explain them in a simple manner so that we may begin the implementations.
 
@@ -22,3 +22,7 @@ Having established these broad concepts let's dive into the algorithms we will b
 ### Linear Regression
 
 ### K-means
+
+### Quantum Regression and Variational Quantum Regression
+
+### Quantum Classification
