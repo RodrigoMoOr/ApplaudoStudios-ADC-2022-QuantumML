@@ -31,10 +31,6 @@ f = lambda x: np.sin(x)
 X = (ub - lb) * algorithm_globals.random.random([num_samples, 1]) + lb
 y = f(X[:, 0]) + eps * (2 * algorithm_globals.random.random(num_samples) - 1)
 
-plt.plot(X_, f(X_), "r--")
-plt.plot(X, y, "bo")
-plt.show()
-
 # construct simple feature map
 param_x = Parameter("x")
 feature_map = QuantumCircuit(1, name="fm")
@@ -45,13 +41,15 @@ param_y = Parameter("y")
 ansatz = QuantumCircuit(1, name="vf")
 ansatz.ry(param_y, 0)
 
-# construct QNN
-regression_opflow_qnn = TwoLayerQNN(1, feature_map, ansatz, quantum_instance=quantum_instance)
-
-# construct the regressor from the neural network
-regressor = NeuralNetworkRegressor(
-    neural_network=regression_opflow_qnn,
-    loss="squared_error",
+vqr = VQR(
+    feature_map=feature_map,
+    ansatz=ansatz,
     optimizer=L_BFGS_B(),
-    callback=callback_graph,
+    quantum_instance=quantum_instance,
 )
+
+# fit regressor
+vqr.fit(X, y)
+
+# score result
+print(vqr.score(X, y))
